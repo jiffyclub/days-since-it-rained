@@ -135,7 +135,7 @@ def history_year(dt, airport):
     for row in reader:
         dt = datetime.strptime(row[0], '%Y-%m-%d').date()
         precip = float(row[19]) if row[19] != 'T' else 0.0
-        events = {s.strip() for s in row[21].split('-')}
+        events = {s.strip().lower() for s in row[21].split('-')}
         max_temp = float(row[1]) if row[1] else None
         min_temp = float(row[3]) if row[3] else None
 
@@ -153,19 +153,25 @@ def days_ago(dt):
     return (date.today() - dt).days
 
 
-def find_rain(history):
+def find_rain(history, more_than=0):
     """
     Find the most recent date with rain in a list of rain history.
 
     History is expected to be in chronological order.
 
+    Parameters
+    ----------
+    history : list of HistoryDay
+    more_than : float, optional
+        Looks for days on which more than this much rain was recorded.
+
     """
     for day in reversed(history):
-        if day.precip > 0 or 'Rain' in day.events:
+        if day.precip > more_than:
             return day
 
 
-def days_since_it_rained(addr):
+def days_since_it_rained(addr, more_than=0):
     """
     Return the number of days since it rained (and some other info)
     for a location.
@@ -173,6 +179,8 @@ def days_since_it_rained(addr):
     Parameters
     ----------
     addr : str
+    more_than : float, optional
+        Looks for days on which more than this much rain was recorded.
 
     Returns
     -------
@@ -188,7 +196,7 @@ def days_since_it_rained(addr):
 
     for _ in range(5):
         history = history_year(dt, airport)
-        rain_day = find_rain(history)
+        rain_day = find_rain(history, more_than=more_than)
 
         if rain_day:
             break
@@ -200,6 +208,17 @@ def days_since_it_rained(addr):
     return days_ago(rain_day.date), rain_day, loc, airport
 
 
+def daily_history_url(airport, dt):
+    """
+    Get the URL for the daily history page at WU for an airport and date.
+
+    """
+    return (
+        'http://www.wunderground.com/history/airport'
+        '/{airport}/{year}/{month}/{day}/DailyHistory.html').format(
+            airport=airport.upper(), year=dt.year, month=dt.month, day=dt.day)
+
+
 if __name__ == '__main__':
     import sys
-    print(days_since_it_rained(sys.argv[1]))
+    print(days_since_it_rained(sys.argv[1], float(sys.argv[2])))
