@@ -17,7 +17,8 @@ logger = logging.getLogger(__name__)
 Location = namedtuple('Location', ('address', 'lat', 'lng'))
 
 sess = requests.Session()
-sess.headers.update({'user-agent': 'dayssinceitrained.info'})
+sess.headers.update(
+    {'user-agent': 'dayssinceitrained.info/jiffyclub@gmail.com'})
 
 
 def address_to_geodata(addr):
