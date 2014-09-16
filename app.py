@@ -6,7 +6,7 @@ import dsir
 from dsirexceptions import (
     ZeroResultsError, GeocodeError, AirportError, RainError)
 
-app = Flask('app')
+app = Flask('dsir.app')
 
 
 def check_threshold(thresh):

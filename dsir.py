@@ -11,7 +11,7 @@ import requests
 from dsirexceptions import (
     ZeroResultsError, GeocodeError, AirportError, RainError)
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('dsir.data')
 
 
 Location = namedtuple('Location', ('address', 'lat', 'lng'))
@@ -70,6 +70,8 @@ def get_airport_code(lat, lng):
     Get the code for the airport nearest a lat/lng location.
 
     """
+    logger.debug(
+        'looking up airport code for lat/lng: {}, {}'.format(lat, lng))
     baseurl = (
         'http://www.wunderground.com/cgi-bin/findweather/getForecast'
         '?query={},{}').format(lat, lng)
@@ -79,8 +81,10 @@ def get_airport_code(lat, lng):
     code = re.search(r'/history/airport/([a-zA-Z]{4})/', resp.text)
 
     if not code:
-        raise AirportError(
-            'Could not find airport code for lat/lng: {}, {}'.format(lat, lng))
+        msg = 'Could not find airport code for lat/lng: {}, {}'.format(
+            lat, lng)
+        logger.error(msg)
+        raise AirportError(msg)
 
     return code.group(1)
 
@@ -111,6 +115,8 @@ def history_year(dt, airport):
     history : list of HistoryDay
 
     """
+    logger.debug(
+        'requesting history for date: {} and airport: {}'.format(dt, airport))
     baseurl = (
         'http://www.wunderground.com/history/airport/'
         '{airport}/{year}/{month}/{day}/CustomHistory.html')
@@ -128,7 +134,7 @@ def history_year(dt, airport):
     resp.raise_for_status()
 
     data = StringIO(resp.text.strip().replace('<br />', ''), newline='')
-    data.readline()
+    data.readline()  # burn the header row
     reader = csv.reader(data)
 
     history = []
@@ -191,6 +197,9 @@ def days_since_it_rained(addr, more_than=0):
     airport : str
 
     """
+    logger.debug(
+        'looking for more than {} rain for address: {!r}'.format(
+            address, more_than))
     loc = address_to_geodata(addr)
     airport = get_airport_code(loc.lat, loc.lng)
     dt = date.today()
@@ -214,6 +223,9 @@ def daily_history_url(airport, dt):
     Get the URL for the daily history page at WU for an airport and date.
 
     """
+    logger.debug(
+        'building daily history url for date: {} and airport: {}'.format(
+            dt, airport))
     return (
         'http://www.wunderground.com/history/airport'
         '/{airport}/{year}/{month}/{day}/DailyHistory.html').format(
