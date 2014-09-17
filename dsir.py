@@ -15,10 +15,12 @@ logger = logging.getLogger('dsir')
 
 
 Location = namedtuple('Location', ('address', 'lat', 'lng'))
+HistoryDay = namedtuple(
+    'HistoryDay', ('date', 'precip', 'events', 'min_temp', 'max_temp'))
 
 sess = requests.Session()
 sess.headers.update(
-    {'user-agent': 'dayssinceitrained.com/jiffyclub@gmail.com'})
+    {'user-agent': 'www.dayssinceitrained.com/jiffyclub@gmail.com'})
 
 
 def address_to_geodata(addr):
@@ -97,10 +99,6 @@ def one_year_back(dt):
     return dt - timedelta(days=365)
 
 
-HistoryDay = namedtuple(
-    'HistoryDay', ('date', 'precip', 'events', 'min_temp', 'max_temp'))
-
-
 def history_year(dt, airport):
     """
     Get a year of history going back from a given datetime.
@@ -132,10 +130,16 @@ def history_year(dt, airport):
 
     resp = sess.get(url, params=params)
     resp.raise_for_status()
+    logger.debug('history retrieved for date: {} and airport: {}'.format(
+        dt, airport))
 
     data = StringIO(resp.text.strip().replace('<br />', ''), newline='')
     data.readline()  # burn the header row
     reader = csv.reader(data)
+
+    logger.debug(
+        'building history array for date: {} and airport: {}'.format(
+            dt, airport))
 
     history = []
 
@@ -149,6 +153,9 @@ def history_year(dt, airport):
         history.append(HistoryDay(
             dt, precip, events, min_temp, max_temp))
 
+    logger.debug(
+        'returning history array for date: {} and airport: {}'.format(
+            dt, airport))
     return history
 
 
@@ -215,6 +222,11 @@ def days_since_it_rained(address, more_than=0):
     else:
         raise RainError('We went back five years and didn\'t find rain!')
 
+    logger.debug(
+        ('found {precip} inches of rain on {date} '
+         'for address {addr!r} and airport {airport}').format(
+            precip=rain_day.precip, date=rain_day.date, addr=loc.address,
+            airport=airport))
     return days_ago(rain_day.date), rain_day, loc, airport
 
 
