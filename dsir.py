@@ -179,9 +179,36 @@ def find_rain(history, more_than=0):
     more_than : float, optional
         Looks for days on which more than this much rain was recorded.
 
+    Returns
+    -------
+    rain_day : HistoryDay
+
     """
     for day in reversed(history):
         if day.precip > more_than:
+            return day
+
+
+def find_rain_event(history):
+    """
+    Find the most recent date with a recorded rain event, ignoring precip.
+
+    History is expected to be in chronological order.
+
+    Parameters
+    ----------
+    history : list of HistoryDay
+    more_than : float, optional
+        Looks for days on which more than this much rain was recorded.
+
+    Returns
+    -------
+    rain_day : HistoryDay
+
+    """
+    precip_events = {'rain', 'snow'}
+    for day in reversed(history):
+        if precip_events.intersection(day.events):
             return day
 
 
@@ -211,8 +238,11 @@ def days_since_it_rained(address, more_than=0):
     airport = get_airport_code(loc.lat, loc.lng)
     dt = date.today()
 
+    all_history = []
+
     for _ in range(5):
         history = history_year(dt, airport)
+        all_history = history + all_history
         rain_day = find_rain(history, more_than=more_than)
 
         if rain_day:
@@ -220,7 +250,9 @@ def days_since_it_rained(address, more_than=0):
         else:
             dt = one_year_back(dt)
     else:
-        raise RainError('We went back five years and didn\'t find rain!')
+        rain_day = find_rain_event(all_history)
+        if not rain_day:
+            raise RainError('We went back five years and didn\'t find rain!')
 
     logger.debug(
         ('found {precip} inches of rain on {date} '
