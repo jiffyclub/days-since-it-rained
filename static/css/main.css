@@ -85,7 +85,6 @@ textarea {
 
 .footer-container footer {
     padding: 20px 0;
-    text-align: right;
 }
 
 /* ===============
@@ -177,6 +176,10 @@ p + p {
 
 .dark {
     color: #222222;
+}
+
+.float-right {
+    float: right;
 }
 
 /* Radio and check box styling */
