@@ -199,7 +199,7 @@ def days_since_it_rained(address, more_than=0):
     """
     logger.debug(
         'looking for more than {} rain for address: {!r}'.format(
-            address, more_than))
+            more_than, address))
     loc = address_to_geodata(address)
     airport = get_airport_code(loc.lat, loc.lng)
     dt = date.today()
