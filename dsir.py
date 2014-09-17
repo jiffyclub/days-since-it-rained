@@ -18,7 +18,7 @@ Location = namedtuple('Location', ('address', 'lat', 'lng'))
 
 sess = requests.Session()
 sess.headers.update(
-    {'user-agent': 'dayssinceitrained.info/jiffyclub@gmail.com'})
+    {'user-agent': 'dayssinceitrained.com/jiffyclub@gmail.com'})
 
 
 def address_to_geodata(addr):
