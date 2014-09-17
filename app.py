@@ -1,3 +1,5 @@
+import logging
+
 from flask import (
     Flask, abort, jsonify, redirect, url_for, render_template, request)
 
@@ -6,6 +8,21 @@ from dsirexceptions import (
     ZeroResultsError, GeocodeError, AirportError, RainError)
 
 app = Flask(__name__)
+
+
+def configure_logging():
+    lg = logging.getLogger('dsir')
+    lg.setLevel(logging.DEBUG)
+
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.DEBUG)
+
+    formatter = logging.Formatter(
+        '%(asctime)s|%(name)s|%(levelname)s|%(message)s')
+    ch.setFormatter(formatter)
+
+    lg.addHandler(ch)
+configure_logging()
 
 
 def check_threshold(thresh):

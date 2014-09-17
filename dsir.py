@@ -11,7 +11,7 @@ import requests
 from dsirexceptions import (
     ZeroResultsError, GeocodeError, AirportError, RainError)
 
-logger = logging.getLogger('dsir.data')
+logger = logging.getLogger('dsir')
 
 
 Location = namedtuple('Location', ('address', 'lat', 'lng'))
