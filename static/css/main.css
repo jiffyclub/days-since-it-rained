@@ -1,0 +1,338 @@
+/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+html {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+audio,
+canvas,
+img,
+video {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* ===== Initializr Styles ==================================================
+   Author: Jonathan Verrecchia - verekia.com/initializr/responsive-template
+   ========================================================================== */
+
+.wrapper {
+    width: 90%;
+    margin: 0 5%;
+}
+
+/* ===================
+    ALL: Orange Theme
+   =================== */
+
+.header-container {
+    background: #3498db;
+    border-bottom: 20px solid white;
+    text-align: center;
+}
+
+.footer-container {
+    background: white;
+    border-top: 20px solid #3498db;
+}
+
+.header-container h1 {
+    color: #ecf0f1;
+}
+
+/* ==============
+    MOBILE: Main
+   ============== */
+
+.main {
+    padding: 30px 0;
+}
+
+.footer-container footer {
+    padding: 20px 0;
+    text-align: right;
+}
+
+/* ===============
+    ALL: IE Fixes
+   =============== */
+
+.ie7 .title {
+    padding-top: 20px;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+body, button, input {
+    font-size: 20px;
+    font-family: "Libre Baskerville", serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Yellowtail', cursive;
+}
+
+.title {
+    line-height: 1.4;
+}
+
+.search-form {
+    text-align: center;
+}
+
+.search-form .search-field {
+    width: 100%;
+}
+
+.btn {
+    color: #ecf0f1;
+    font-size: 36px;
+    background: #16a085;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    border: none;
+}
+
+.btn:hover {
+    background: #1abc9c;
+    text-decoration: none;
+}
+
+.search-form .btn {
+    width: 100%;
+}
+
+.space-right {
+    padding-right: 20px;
+}
+
+/* Radio and check box styling */
+/* http://code.stephenmorley.org/html-and-css/styling-checkboxes-and-radio-buttons/ */
+input[type=checkbox]:not(old),
+input[type=radio]:not(old){
+  width: 2em;
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+  opacity: 0;
+}
+
+input[type=checkbox]:not(old) + label,
+input[type=radio]:not(old) + label{
+  display: inline-block;
+  margin-left: -2em;
+  line-height: 1.5em;
+}
+
+input[type=checkbox]:not(old) + label > span,
+input[type=radio]:not(old) + label > span{
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  margin: 0.25em 0.5em 0.25em 0.25em;
+  border: 0.0625em solid #bdc3c7;
+  background: #bdc3c7;
+  vertical-align: bottom;
+}
+
+input[type=checkbox]:not(old):checked + label > span:before{
+  content: '✓';
+  display: block;
+  width: 1em;
+  color: rgb(153,204,102);
+  font-size: 0.875em;
+  line-height: 1em;
+  text-align: center;
+  text-shadow: 0 0 0.0714em rgb(115,153,77);
+  font-weight: bold;
+}
+
+input[type=radio]:not(old):checked + label > span > span{
+  display: block;
+  width: 0.7em;
+  height: 0.7em;
+  margin: 0.2em;
+  background: #3498db;
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 1140px) {
+
+/* ===============
+    Maximal Width
+   =============== */
+
+    .wrapper {
+        width: 1026px; /* 1140px - 10% for margins */
+        margin: 0 auto;
+    }
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}

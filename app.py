@@ -1,12 +1,11 @@
-from urllib.parse import unquote
-
-from flask import Flask, abort, jsonify, render_template, request
+from flask import (
+    Flask, abort, jsonify, redirect, url_for, render_template, request)
 
 import dsir
 from dsirexceptions import (
     ZeroResultsError, GeocodeError, AirportError, RainError)
 
-app = Flask('dsir.app')
+app = Flask(__name__)
 
 
 def check_threshold(thresh):
@@ -24,12 +23,22 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/dsir/<address>')
-def days(address):
-    # render dsir page
+@app.route('/dsir')
+def days():
+    # render info page
+    address = request.args.get('address')
+    if not address:
+        return abort(404)
     more_than = check_threshold(request.args.get('threshold', 0)) or 0
     return render_template(
-        'dsir.html', address=unquote(address), more_than=more_than)
+        'dsir.html', address=address, more_than=more_than)
+
+
+@app.route('/search', methods=['POST'])
+def search():
+    address = request.form['address']
+    threshold = request.form['threshold']
+    return redirect(url_for('days', address=address, threshold=threshold))
 
 
 @app.route('/data')

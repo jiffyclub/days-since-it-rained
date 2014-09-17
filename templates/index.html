@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="search-form">
+    <form action="/search" method="post" id="location-form">
+        <div>
+            <input type="search"
+                   placeholder="Enter a location"
+                   class="search-field gamma"
+                   id="location-input"
+                   name="address"
+                   minlength=1
+                   required>
+        </div>
+        <div class="delta">
+            <span class="space-right">Look for more than:</span>
+            <input id="threshold1" type="radio" value=0 name="threshold" checked>
+            <label for="threshold1" class="space-right">
+                <span><span></span></span>0
+            </label>
+            <input id="threshold2" type="radio" value=0.01 name="threshold">
+            <label for="threshold2" class="space-right">
+                <span><span></span></span>0.01
+            </label>
+            <input id="threshold3" type="radio" value=0.1 name="threshold">
+            <label for="threshold3" class="space-right">
+                <span><span></span></span>0.1
+            </label>
+            inches of rain.
+        </div>
+        <div>
+            <button class="btn beta" type="submit" name="location-submit">
+                Search
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
