@@ -113,6 +113,26 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.4;
 }
 
+.title a {
+    color: #ecf0f1;
+    text-decoration: none;
+}
+
+.title a:hover {
+    color: #ecf0f1;
+    text-decoration: none;
+}
+
+a {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #3498db;
+    text-decoration: underline;
+}
+
 .search-form {
     text-align: center;
 }
@@ -141,6 +161,22 @@ h1, h2, h3, h4, h5, h6 {
 
 .space-right {
     padding-right: 20px;
+}
+
+p + p {
+    text-indent: 0;
+}
+
+.dsir-info {
+    text-align: center;
+}
+
+.days {
+    font-family: "Libre Baskerville", serif;
+}
+
+.dark {
+    color: #222222;
 }
 
 /* Radio and check box styling */
@@ -190,6 +226,56 @@ input[type=radio]:not(old):checked + label > span > span{
   height: 0.7em;
   margin: 0.2em;
   background: #3498db;
+}
+
+/* spinner CSS from http://tobiasahlin.com/spinkit/ */
+.spinner {
+  margin: 100px auto;
+  width: 60px;
+  height: 60px;
+  position: relative;
+  text-align: center;
+
+  -webkit-animation: rotate 2.0s infinite linear;
+  animation: rotate 2.0s infinite linear;
+}
+
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #16a085;
+  border-radius: 100%;
+
+  -webkit-animation: bounce 2.0s infinite ease-in-out;
+  animation: bounce 2.0s infinite ease-in-out;
+}
+
+.dot2 {
+  top: auto;
+  bottom: 0px;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
 }
 
 /* ==========================================================================

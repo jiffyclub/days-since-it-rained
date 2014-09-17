@@ -178,14 +178,14 @@ def find_rain(history, more_than=0):
             return day
 
 
-def days_since_it_rained(addr, more_than=0):
+def days_since_it_rained(address, more_than=0):
     """
     Return the number of days since it rained (and some other info)
     for a location.
 
     Parameters
     ----------
-    addr : str
+    address : str
     more_than : float, optional
         Looks for days on which more than this much rain was recorded.
 
@@ -200,7 +200,7 @@ def days_since_it_rained(addr, more_than=0):
     logger.debug(
         'looking for more than {} rain for address: {!r}'.format(
             address, more_than))
-    loc = address_to_geodata(addr)
+    loc = address_to_geodata(address)
     airport = get_airport_code(loc.lat, loc.lng)
     dt = date.today()
 

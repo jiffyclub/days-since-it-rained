@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="dsir-div">
+    <div class="spinner">
+        <div class="dot1"></div>
+        <div class="dot2"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block postscripts %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="static/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+<script src="static/js/vendor/handlebars.min.js"></script>
+
+{# handlebars templates #}
+{% raw %}
+<script id="dsir-template" type="text/x-handlebars-template">
+<div class="dsir-info gamma">
+    <p>It has been</p>
+    <p><h3 class="days alpha">{{dsir}}</h3></p>
+    <p>days since it rained at least <span class="dark">{{more_than}}</span> inches near</p>
+    <p><span class="dark">{{address}}</span>.</p>
+    <p>It rained <span class="dark">{{precip}}</span> inches on
+        <a href="{{wulink}}">{{date}}</a>.</p>
+</div>
+</script>
+<script id="no-location-template" type="text/x-handlebars-template">
+<div class="error">
+    <p>We couldn&apos;t find this location, please
+        <a href="/">try a different location</a>.
+    </p>
+</div>
+</script>
+<script id="no-rain-template" type="text/x-handlebars-template">
+<div class="error">
+    <p>We went back five years and couldn&apos;t find any rain!<br>
+       Maybe <a href="/">try a different location</a>.
+    </p>
+</div>
+</script>
+{% endraw %}
+
+<script src="static/js/dsir.js"></script>
+<script>
+$(function () {
+    find_rain("{{address}}", {{more_than}});
+})
+</script>
+{% endblock %}
