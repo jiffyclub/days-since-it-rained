@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Days Since It Rained: FAQ{% endblock %}
+
+{% block content %}
+<div class="faq">
+    <div class="align-center">
+        <h2>F&middot;A&middot;Q</h2>
+    </div>
+    <hr>
+    <dl class="faq-list">
+        <dt class="faq-question">The answer is wrong!</dt>
+        <dd class="faq-answer">
+            DSIR is only as accurate as the data it uses.
+            The weather history data comes from the airport nearest a location
+            (via <a href="http://www.wunderground.com/">Weather Underground</a>).
+            These are not always major airports, and they don't always record
+            precipitation data. For example,
+            <a href="http://www.countyairports.org/pao.html">Palo Alto Airport</a>
+            does not record precipitation data at all.
+            For more accurate results, try searching for a nearby major airport.
+        </dd>
+        <dd class="faq-answer">
+            Because the history data comes from airports the results may not
+            be accurate for you if the nearest airport is far away or does
+            not record accurate data.
+        </dd>
+        <hr>
+        <dt class="faq-question">What's going on behind the scenes?</dt>
+        <dd class="faq-answer">
+            The search query is first converted to a geographic location by the
+            <a href="https://developers.google.com/maps/documentation/geocoding/">
+                Google Maps Geocoding API
+            </a>.
+            Then DSIR checks with
+            <a href="http://www.wunderground.com/">Weather Underground</a>
+            to find the nearest airport.
+            This step actually requests the page for the current conditions
+            from WU and uses a
+            <a href="https://docs.python.org/3.4/library/re.html">regular expression</a>
+            to parse out an airport code.
+        </dd>
+        <dd class="faq-answer">
+            Finally, DSIR requests weather history from
+            <a href="http://www.wunderground.com/">Weather Underground</a>
+            for that airport and searches for recorded precipitation.
+            (<a href="http://www.wunderground.com/history/airport/KOAK/2014/9/17/MonthlyHistory.html?format=1">Here</a>,
+            for example, is one month of history data for Oakland Airport.)
+            DSIR retrieves one year of history data at a time using
+            WU's custom search URL.
+            DSIR will search back a maximum of five years looking for
+            precipitation.
+        </dd>
+        <dd class="faq-answer">
+            If no recorded precipiation is found
+            (because not all airports record precipitation),
+            DSIR searches instead for rain "events".
+            In this case DSIR can't say how much it rained,
+            only that someone recorded rain on a given day.
+        </dd>
+        <hr>
+        <dt class="faq-question">Who made DSIR?</dt>
+        <dd class="faq-answer">
+            DSIR was made by <a href="http://penandpants.com">Matt Davis</a>,
+            aka <a href="https://twitter.com/jiffyclub">jiffyclub</a>.
+            Feel free to <a href="mailto:jiffyclub@gmail.com">get in touch</a>.
+        </dd>
+        <hr>
+        <dt class="faq-question">Where is DSIR running?</dt>
+        <dd class="faq-answer">
+            DSIR runs on <a href="http://heroku.com/">Heroku</a>.
+            It's a Python 3 application built primarily using
+            <a href="http://flask.pocoo.org/">Flask</a>,
+            <a href="http://jinja.pocoo.org/">Jinja</a>, and
+            <a href="http://docs.python-requests.org/en/latest/">Requests</a>.
+            (Plus, of course, the wonderful
+            <a href="https://docs.python.org/3/library/index.html">Python Standard Library</a>.)
+            The small bit of client code uses
+            <a href="http://jquery.com/">jQuery</a> and
+            <a href="http://handlebarsjs.com/">Handlebars</a>.
+            I got a headstart on the HTML and CSS with
+            <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a>.
+        </dd>
+    </dl>
+</div>
+{% endblock %}

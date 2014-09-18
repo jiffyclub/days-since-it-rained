@@ -40,6 +40,11 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')
+
+
 @app.route('/dsir')
 def days():
     # render info page

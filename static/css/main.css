@@ -73,6 +73,7 @@ textarea {
 
 .header-container h1 {
     color: #ecf0f1;
+    font-family: 'Yellowtail', cursive;
 }
 
 /* ==============
@@ -102,10 +103,6 @@ textarea {
 body, button, input {
     font-size: 20px;
     font-family: "Libre Baskerville", serif;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Yellowtail', cursive;
 }
 
 .title {
@@ -180,6 +177,14 @@ p + p {
 
 .float-right {
     float: right;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.faq-question {
+    font-weight: bold;
 }
 
 /* Radio and check box styling */
