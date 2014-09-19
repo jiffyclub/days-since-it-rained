@@ -93,7 +93,8 @@ def data():
             date=rain_day.date.isoformat(),
             precip=rain_day.precip,
             more_than=more_than,
-            wulink=dsir.daily_history_url(airport, rain_day.date)))
+            wulink=dsir.daily_history_url(airport, rain_day.date),
+            airport=airport))
 
 
 if __name__ == '__main__':
