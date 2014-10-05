@@ -106,13 +106,16 @@ def history():
     airport = request.args.get('airport')
     date = request.args.get('date')
 
-    if not airport or not date:
+    if not airport:
         return abort(400)
 
-    try:
-        datetime.datetime.strptime(date, '%Y-%m-%d')
-    except:
-        return abort(400)
+    if date:
+        try:
+            datetime.datetime.strptime(date, '%Y-%m-%d')
+        except:
+            date = datetime.date.today().isoformat()
+    else:
+        date = datetime.date.today().isoformat()
 
     return render_template('history.html', airport=airport, date=date)
 
