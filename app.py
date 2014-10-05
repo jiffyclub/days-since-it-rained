@@ -138,7 +138,7 @@ def historydata():
 
     history = dsir.history_year(dt, airport)
     history = [history_tuple_to_dict(h) for h in history]
-    total_precip = sum(h['precip'] for h in history)
+    total_precip = '{:.2f}'.format(sum(h['precip'] for h in history))
     rainy_days = sum(h['rainday'] for h in history)
 
     return app.make_response(jsonify(
