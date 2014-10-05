@@ -150,6 +150,8 @@ def historydata():
         rainydays=rainy_days,
         airport=airport,
         date=date,
+        firstday=history[0]['date'],
+        lastday=history[-1]['date'],
         wulink=dsir.wu_year_history_url(airport, dt)))
 
 
