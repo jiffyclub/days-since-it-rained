@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="history-div">
+  <div class="spinner">
+    <div class="dot1"></div>
+    <div class="dot2"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block postscripts %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="static/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+<script src="static/js/vendor/handlebars.min.js"></script>
+
+{# handlebars templates #}
+{% raw %}
+<script id="history-template" type="text/x-handlebars-template">
+<div class="history-title">
+  <h3>History for Airport {{airport}}</h3>
+</div>
+<div class="history-summary">
+  <p>Over the last year {{totalprecip}} inches of precipitation fell
+    on {{rainydays}} days.</p>
+</div>
+<div class="history-table">
+  <div class="precip-history-header">
+    <span class="history-date">Date</span>
+    <span class="history-precip">Precip (In)</span>
+    <span class="history-events">Events</span>
+  </div>
+  {{#each history}}
+    {{#if this.rainday}}
+      <div class="history-yes-precip">
+    {{else}}
+      <div class="history-no-precip">
+    {{/if}}
+      <span class="history-date">{{this.date}}</span>
+      <span class="history-precip">{{this.precip}}</span>
+      <span class="history-events">{{this.events}}</span>
+    </div>
+  {{/each}}
+</div>
+<div class="history-wu-link">
+  <p>See more <a href="{{wulink}}">on Weather Underground</a>.</p>
+</div>
+</script>
+<script id="history-error-template" type="text/x-handlebars-template">
+<div class="precip-history-error">
+  <p>Oh no, an error occurred! Please check the airport and date in the query.</p>
+</div>
+</script>
+{% endraw %}
+
+<script src="static/js/history.js"></script>
+<script>
+$(function () {
+  airport_history("{{airport}}", "{{date}}");
+})
+</script>
+{% endblock %}

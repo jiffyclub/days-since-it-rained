@@ -5,45 +5,45 @@ button,
 input,
 select,
 textarea {
-    color: #222;
+  color: #222;
 }
 
 html {
-    font-size: 1em;
-    line-height: 1.4;
+  font-size: 1em;
+  line-height: 1.4;
 }
 
 hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
 }
 
 audio,
 canvas,
 img,
 video {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
 
 textarea {
-    resize: vertical;
+  resize: vertical;
 }
 
 .browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
 }
 
 
@@ -51,281 +51,310 @@ textarea {
    Author: Jonathan Verrecchia - verekia.com/initializr/responsive-template
    ========================================================================== */
 
-.wrapper {
+   .wrapper {
     width: 90%;
     margin: 0 5%;
-}
+  }
 
 /* ===================
     ALL: Orange Theme
-   =================== */
+    =================== */
 
-.header-container {
-    background: #3498db;
-    border-bottom: 20px solid white;
-    text-align: center;
-}
+    .header-container {
+      background: #3498db;
+      border-bottom: 20px solid white;
+      text-align: center;
+    }
 
-.footer-container {
-    background: white;
-    border-top: 20px solid #3498db;
-}
+    .footer-container {
+      background: white;
+      border-top: 20px solid #3498db;
+    }
 
-.header-container h1 {
-    color: #ecf0f1;
-    font-family: 'Yellowtail', cursive;
-}
+    .header-container h1 {
+      color: #ecf0f1;
+      font-family: 'Yellowtail', cursive;
+    }
 
 /* ==============
     MOBILE: Main
-   ============== */
+    ============== */
 
-.main {
-    padding: 30px 0;
-}
+    .main {
+      padding: 30px 0;
+    }
 
-.footer-container footer {
-    padding: 20px 0;
-}
+    .footer-container footer {
+      padding: 20px 0;
+    }
 
 /* ===============
     ALL: IE Fixes
-   =============== */
+    =============== */
 
-.ie7 .title {
-    padding-top: 20px;
-}
+    .ie7 .title {
+      padding-top: 20px;
+    }
 
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
-body, button, input {
+   body, button, input {
     font-size: 20px;
     font-family: "Libre Baskerville", serif;
-}
+  }
 
-.title {
+  .title {
     line-height: 1.4;
-}
+  }
 
-.title a {
+  .title a {
     color: #ecf0f1;
     text-decoration: none;
-}
+  }
 
-.title a:hover {
+  .title a:hover {
     color: #ecf0f1;
     text-decoration: none;
-}
+  }
 
-a {
+  a {
     color: #2980b9;
     text-decoration: none;
-}
+  }
 
-a:hover {
+  a:hover {
     color: #3498db;
     text-decoration: underline;
-}
+  }
 
-.search-form {
+  .search-form {
     text-align: center;
-}
+  }
 
-.search-form .search-field {
+  .search-form .search-field {
     width: 100%;
-}
+  }
 
-.btn {
+  .btn {
     color: #ecf0f1;
     font-size: 36px;
     background: #16a085;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
     border: none;
-}
+  }
 
-.btn:hover {
+  .btn:hover {
     background: #1abc9c;
     text-decoration: none;
-}
-
-.search-form .btn {
-    width: 100%;
-}
-
-.space-right {
-    padding-right: 20px;
-}
-
-p + p {
-    text-indent: 0;
-}
-
-.dsir-info {
-    text-align: center;
-}
-
-.days {
-    font-family: "Libre Baskerville", serif;
-}
-
-.dark {
-    color: #222222;
-}
-
-.float-right {
-    float: right;
-}
-
-.align-center {
-    text-align: center;
-}
-
-.faq-question {
-    font-weight: bold;
-}
-
-/* Radio and check box styling */
-/* http://code.stephenmorley.org/html-and-css/styling-checkboxes-and-radio-buttons/ */
-input[type=checkbox]:not(old),
-input[type=radio]:not(old){
-  width: 2em;
-  margin: 0;
-  padding: 0;
-  font-size: 1em;
-  opacity: 0;
-}
-
-input[type=checkbox]:not(old) + label,
-input[type=radio]:not(old) + label{
-  display: inline-block;
-  margin-left: -2em;
-  line-height: 1.5em;
-}
-
-input[type=checkbox]:not(old) + label > span,
-input[type=radio]:not(old) + label > span{
-  display: inline-block;
-  width: 1.1em;
-  height: 1.1em;
-  margin: 0.25em 0.5em 0.25em 0.25em;
-  border: 0.0625em solid #bdc3c7;
-  background: #bdc3c7;
-  vertical-align: bottom;
-}
-
-input[type=checkbox]:not(old):checked + label > span:before{
-  content: '✓';
-  display: block;
-  width: 1em;
-  color: rgb(153,204,102);
-  font-size: 0.875em;
-  line-height: 1em;
-  text-align: center;
-  text-shadow: 0 0 0.0714em rgb(115,153,77);
-  font-weight: bold;
-}
-
-input[type=radio]:not(old):checked + label > span > span{
-  display: block;
-  width: 0.7em;
-  height: 0.7em;
-  margin: 0.2em;
-  background: #3498db;
-}
-
-/* spinner CSS from http://tobiasahlin.com/spinkit/ */
-.spinner {
-  margin: 100px auto;
-  width: 60px;
-  height: 60px;
-  position: relative;
-  text-align: center;
-
-  -webkit-animation: rotate 2.0s infinite linear;
-  animation: rotate 2.0s infinite linear;
-}
-
-.dot1, .dot2 {
-  width: 60%;
-  height: 60%;
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  background-color: #16a085;
-  border-radius: 100%;
-
-  -webkit-animation: bounce 2.0s infinite ease-in-out;
-  animation: bounce 2.0s infinite ease-in-out;
-}
-
-.dot2 {
-  top: auto;
-  bottom: 0px;
-  -webkit-animation-delay: -1.0s;
-  animation-delay: -1.0s;
-}
-
-@-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg) }}
-@keyframes rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
-
-@-webkit-keyframes bounce {
-  0%, 100% { -webkit-transform: scale(0.0) }
-  50% { -webkit-transform: scale(1.0) }
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
-  } 50% {
-    transform: scale(1.0);
-    -webkit-transform: scale(1.0);
   }
-}
+
+  .search-form .btn {
+    width: 100%;
+  }
+
+  .space-right {
+    padding-right: 20px;
+  }
+
+  p + p {
+    text-indent: 0;
+  }
+
+  .dsir-info {
+    text-align: center;
+  }
+
+  .days {
+    font-family: "Libre Baskerville", serif;
+  }
+
+  .dark {
+    color: #222222;
+  }
+
+  .float-right {
+    float: right;
+  }
+
+  .align-center {
+    text-align: center;
+  }
+
+  .faq-question {
+    font-weight: bold;
+  }
+
+  .history-title {
+    margin-bottom: 20px;
+  }
+
+  .history-table {
+    display: table;
+    width: 100%;
+  }
+
+  .precip-history-header {
+    display: table-header-group;
+  }
+
+  .history-yes-precip, .history-no-precip {
+    display: table-row;
+  }
+
+  .history-no-precip {
+    color: #bbbbbb;
+  }
+
+  .history-date, .history-precip, .history-events {
+    display: table-cell;
+  }
+
+  .history-wu-link {
+    margin-top: 20px;
+  }
+
+  /* Radio and check box styling */
+  /* http://code.stephenmorley.org/html-and-css/styling-checkboxes-and-radio-buttons/ */
+  input[type=checkbox]:not(old),
+  input[type=radio]:not(old){
+    width: 2em;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    opacity: 0;
+  }
+
+  input[type=checkbox]:not(old) + label,
+  input[type=radio]:not(old) + label{
+    display: inline-block;
+    margin-left: -2em;
+    line-height: 1.5em;
+  }
+
+  input[type=checkbox]:not(old) + label > span,
+  input[type=radio]:not(old) + label > span{
+    display: inline-block;
+    width: 1.1em;
+    height: 1.1em;
+    margin: 0.25em 0.5em 0.25em 0.25em;
+    border: 0.0625em solid #bdc3c7;
+    background: #bdc3c7;
+    vertical-align: bottom;
+  }
+
+  input[type=checkbox]:not(old):checked + label > span:before{
+    content: '✓';
+    display: block;
+    width: 1em;
+    color: rgb(153,204,102);
+    font-size: 0.875em;
+    line-height: 1em;
+    text-align: center;
+    text-shadow: 0 0 0.0714em rgb(115,153,77);
+    font-weight: bold;
+  }
+
+  input[type=radio]:not(old):checked + label > span > span{
+    display: block;
+    width: 0.7em;
+    height: 0.7em;
+    margin: 0.2em;
+    background: #3498db;
+  }
+
+  /* spinner CSS from http://tobiasahlin.com/spinkit/ */
+  .spinner {
+    margin: 100px auto;
+    width: 60px;
+    height: 60px;
+    position: relative;
+    text-align: center;
+
+    -webkit-animation: rotate 2.0s infinite linear;
+    animation: rotate 2.0s infinite linear;
+  }
+
+  .dot1, .dot2 {
+    width: 60%;
+    height: 60%;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    background-color: #16a085;
+    border-radius: 100%;
+
+    -webkit-animation: bounce 2.0s infinite ease-in-out;
+    animation: bounce 2.0s infinite ease-in-out;
+  }
+
+  .dot2 {
+    top: auto;
+    bottom: 0px;
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+  }
+
+  @-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg) }}
+  @keyframes rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+
+  @-webkit-keyframes bounce {
+    0%, 100% { -webkit-transform: scale(0.0) }
+    50% { -webkit-transform: scale(1.0) }
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: scale(0.0);
+      -webkit-transform: scale(0.0);
+      } 50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+      }
+    }
 
 /* ==========================================================================
    Media Queries
    ========================================================================== */
 
-@media only screen and (min-width: 1140px) {
+   @media only screen and (min-width: 1140px) {
 
 /* ===============
     Maximal Width
-   =============== */
+    =============== */
 
     .wrapper {
-        width: 1026px; /* 1140px - 10% for margins */
-        margin: 0 auto;
+      width: 1026px; /* 1140px - 10% for margins */
+      margin: 0 auto;
     }
-}
+  }
 
 /* ==========================================================================
    Helper classes
    ========================================================================== */
 
-.ir {
+   .ir {
     background-color: transparent;
     border: 0;
     overflow: hidden;
     *text-indent: -9999px;
-}
+  }
 
-.ir:before {
+  .ir:before {
     content: "";
     display: block;
     width: 0;
     height: 150%;
-}
+  }
 
-.hidden {
+  .hidden {
     display: none !important;
     visibility: hidden;
-}
+  }
 
-.visuallyhidden {
+  .visuallyhidden {
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -334,99 +363,99 @@ input[type=radio]:not(old):checked + label > span > span{
     padding: 0;
     position: absolute;
     width: 1px;
-}
+  }
 
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
+  .visuallyhidden.focusable:active,
+  .visuallyhidden.focusable:focus {
     clip: auto;
     height: auto;
     margin: 0;
     overflow: visible;
     position: static;
     width: auto;
-}
+  }
 
-.invisible {
+  .invisible {
     visibility: hidden;
-}
+  }
 
-.clearfix:before,
-.clearfix:after {
+  .clearfix:before,
+  .clearfix:after {
     content: " ";
     display: table;
-}
+  }
 
-.clearfix:after {
+  .clearfix:after {
     clear: both;
-}
+  }
 
-.clearfix {
+  .clearfix {
     *zoom: 1;
-}
+  }
 
 /* ==========================================================================
    Print styles
    ========================================================================== */
 
-@media print {
+   @media print {
     * {
-        background: transparent !important;
-        color: #000 !important;
-        box-shadow: none !important;
-        text-shadow: none !important;
+      background: transparent !important;
+      color: #000 !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
     }
 
     a,
     a:visited {
-        text-decoration: underline;
+      text-decoration: underline;
     }
 
     a[href]:after {
-        content: " (" attr(href) ")";
+      content: " (" attr(href) ")";
     }
 
     abbr[title]:after {
-        content: " (" attr(title) ")";
+      content: " (" attr(title) ")";
     }
 
     .ir a:after,
     a[href^="javascript:"]:after,
     a[href^="#"]:after {
-        content: "";
+      content: "";
     }
 
     pre,
     blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
+      border: 1px solid #999;
+      page-break-inside: avoid;
     }
 
     thead {
-        display: table-header-group;
+      display: table-header-group;
     }
 
     tr,
     img {
-        page-break-inside: avoid;
+      page-break-inside: avoid;
     }
 
     img {
-        max-width: 100% !important;
+      max-width: 100% !important;
     }
 
     @page {
-        margin: 0.5cm;
+      margin: 0.5cm;
     }
 
     p,
     h2,
     h3 {
-        orphans: 3;
-        widows: 3;
+      orphans: 3;
+      widows: 3;
     }
 
     h2,
     h3 {
-        page-break-after: avoid;
+      page-break-after: avoid;
     }
-}
+  }

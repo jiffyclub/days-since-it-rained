@@ -276,6 +276,23 @@ def daily_history_url(airport, dt):
             airport=airport.upper(), year=dt.year, month=dt.month, day=dt.day)
 
 
+def wu_year_history_url(airport, dt):
+    """
+    Get the URL for year history on WU.
+
+    """
+    logger.debug(
+        'building WU year history URL for date: {} and airport: {}'.format(
+            dt, airport))
+    ya = one_year_back(dt)
+    return (
+        'http://www.wunderground.com/history/airport'
+        '/{airport}/{yearstart}/{monthstart}/{daystart}/CustomHistory.html?'
+        'dayend={day}&monthend={month}&yearend={yearend}').format(
+            airport=airport.upper(), yearstart=ya.year, yearend=dt.year,
+            monthstart=ya.month, month=dt.month, day=dt.day, daystart=ya.day)
+
+
 if __name__ == '__main__':
     import sys
     print(days_since_it_rained(sys.argv[1], float(sys.argv[2])))

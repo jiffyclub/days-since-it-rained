@@ -1,3 +1,4 @@
+import datetime
 import logging
 
 from flask import (
@@ -52,8 +53,7 @@ def days():
     if not address:
         return abort(404)
     more_than = check_threshold(request.args.get('threshold', 0)) or 0
-    return render_template(
-        'dsir.html', address=address, more_than=more_than)
+    return render_template('dsir.html', address=address, more_than=more_than)
 
 
 @app.route('/search', methods=['POST'])
@@ -94,7 +94,60 @@ def data():
             precip=rain_day.precip,
             more_than=more_than,
             wulink=dsir.daily_history_url(airport, rain_day.date),
-            airport=airport))
+            airport=airport,
+            historylink=url_for(
+                'history', airport=airport,
+                date=datetime.date.today().isoformat())))
+
+
+@app.route('/history')
+def history():
+    # display the last year of rain data
+    airport = request.args.get('airport')
+    date = request.args.get('date')
+
+    if not airport or not date:
+        return abort(400)
+
+    try:
+        datetime.datetime.strptime(date, '%Y-%m-%d')
+    except:
+        return abort(400)
+
+    return render_template('history.html', airport=airport, date=date)
+
+
+def history_tuple_to_dict(h):
+    return {
+        'date': h.date.isoformat(),
+        'precip': h.precip,
+        'events': list(h.events),
+        'rainday': h.precip > 0 or 'rain' in h.events,
+        'min_temp': h.min_temp,
+        'max_temp': h.max_temp
+    }
+
+
+@app.route('/historydata')
+def historydata():
+    # return JSON array of history data
+    airport = request.args.get('airport')
+    date = request.args.get('date')
+
+    dt = datetime.datetime.strptime(date, '%Y-%m-%d')
+
+    history = dsir.history_year(dt, airport)
+    history = [history_tuple_to_dict(h) for h in history]
+    total_precip = sum(h['precip'] for h in history)
+    rainy_days = sum(h['rainday'] for h in history)
+
+    return app.make_response(jsonify(
+        history=history,
+        totalprecip=total_precip,
+        rainydays=rainy_days,
+        airport=airport,
+        date=date,
+        wulink=dsir.wu_year_history_url(airport, dt)))
 
 
 if __name__ == '__main__':
