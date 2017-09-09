@@ -7,6 +7,7 @@ from datetime import date, datetime, timedelta
 from io import StringIO
 
 import requests
+from lxml import html
 
 from dsirexceptions import (
     ZeroResultsError, GeocodeError, AirportError, RainError)
@@ -99,6 +100,52 @@ def one_year_back(dt):
     return dt - timedelta(days=365)
 
 
+def parse_precip_history(history_page):
+    doc = html.document_fromstring(history_page)
+    history_table = doc.get_element_by_id('obsTable')
+
+    history = []
+    table_rows = history_table.iterchildren()
+
+    while True:
+        try:
+            row = next(table_rows)
+        except StopIteration:
+            break
+
+        if row.tag == 'thead':
+            # this row contains a year we need to capture
+            # it's in the first element
+            current_year = row[0][0].text.strip()
+
+            # next row will be another header that contains the
+            # current month in the first column
+            row = next(table_rows)
+            current_month = row[0][0].text.strip()
+        else:
+            # row contains data
+            cols = list(row.find('tr'))
+
+            current_day = cols[0].text_content().strip().zfill(2)
+            dt = datetime.strptime(
+                f'{current_year}-{current_month}-{current_day}', '%Y-%b-%d').date()
+            precip = (
+                float(cols[19].text_content().strip())
+                if cols[19].text_content().strip() not in ('', '-', 'T') else 0.0)
+            events = {s.strip().lower() for s in cols[20].text_content().split(',')}
+            max_temp = (
+                float(cols[1].text_content().strip())
+                if cols[1].text_content().strip() not in ('', '-') else None)
+            min_temp = (
+                float(cols[3].text_content().strip())
+                if cols[3].text_content().strip() not in ('', '-') else None)
+
+            history.append(HistoryDay(
+                dt, precip, events, min_temp, max_temp))
+
+    return history
+
+
 def history_year(dt, airport):
     """
     Get a year of history going back from a given datetime.
@@ -122,7 +169,7 @@ def history_year(dt, airport):
         'dayend': dt.day,
         'monthend': dt.month,
         'yearend': dt.year,
-        'format': 1}
+    }
 
     ya = one_year_back(dt)
     url = baseurl.format(
@@ -132,26 +179,11 @@ def history_year(dt, airport):
     resp.raise_for_status()
     logger.debug('history retrieved for date: {} and airport: {}'.format(
         dt, airport))
-
-    data = StringIO(resp.text.strip().replace('<br />', ''), newline='')
-    data.readline()  # burn the header row
-    reader = csv.reader(data)
-
     logger.debug(
         'building history array for date: {} and airport: {}'.format(
             dt, airport))
 
-    history = []
-
-    for row in reader:
-        dt = datetime.strptime(row[0], '%Y-%m-%d').date()
-        precip = float(row[19]) if row[19] != 'T' else 0.0
-        events = {s.strip().lower() for s in row[21].split('-')}
-        max_temp = float(row[1]) if row[1] else None
-        min_temp = float(row[3]) if row[3] else None
-
-        history.append(HistoryDay(
-            dt, precip, events, min_temp, max_temp))
+    history = parse_precip_history(resp.content)
 
     logger.debug(
         'returning history array for date: {} and airport: {}'.format(
