@@ -1,10 +1,8 @@
-import csv
 import logging
 import os
 import re
 from collections import namedtuple
 from datetime import date, datetime, timedelta
-from io import StringIO
 
 import requests
 from lxml import html
@@ -78,6 +76,7 @@ def get_airport_code(lat, lng):
     baseurl = (
         'http://www.wunderground.com/cgi-bin/findweather/getForecast'
         '?query={},{}').format(lat, lng)
+    logger.debug('fetching URL %s', baseurl)
     resp = sess.get(baseurl)
     resp.raise_for_status()
 
@@ -175,6 +174,7 @@ def history_year(dt, airport):
     url = baseurl.format(
         airport=airport, year=ya.year, month=ya.month, day=ya.day)
 
+    logger.debug('fetching URL %s', url)
     resp = sess.get(url, params=params)
     resp.raise_for_status()
     logger.debug('history retrieved for date: {} and airport: {}'.format(
