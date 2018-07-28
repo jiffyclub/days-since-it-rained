@@ -38,6 +38,12 @@ def check_threshold(thresh):
 @app.route('/')
 def index():
     # render index
+    return render_template('offline.html')
+
+
+@app.route('/hidden-search')
+def hidden_search():
+    # render index
     return render_template('index.html')
 
 
